@@ -10,11 +10,17 @@ input, select, button, textarea {
 input[type='text'] {
     cursor: text;
 }
+
 @media (max-width: 768px) {
     .sm-column {
         flex-direction: column;
    }
 }
+
+.table-img {
+    width: 50px;
+    height: auto;
+  }
 .d-none {
     display: none;
 }
