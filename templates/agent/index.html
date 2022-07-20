@@ -10,17 +10,28 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Profile Picture</th>
+            <th>Actions</th>
         </tr>
         {% for data in datas %}
             <tr>
                 <td>{{ data.id }}</td>
-                <td>{{ data.name }}</td>
+                <td><a href="{% url 'agent-detail' id=data.id %}">{{ data.name }}</a></td>
                 <td>{{ data.gender }}</td>
                 <td>{{ data.age }}</td>
                 <td>{{ data.address }}</td>
                 <td>{{ data.phone }}</td>
                 <td>{{ data.email }}</td>
                 <td><a href="/media/{{ data.profile_pic }}"><img class="table-img" src="/media/{{ data.profile_pic }}"></a></td>
+                <td>                    
+                    <form action="{% url 'agent-update' id=data.id %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Update" />
+                    </form>
+                    <form method="POST" action="{% url 'agent-delete' id=data.id %}">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>
